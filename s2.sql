@@ -52,8 +52,8 @@ SELECT cursus, begindatum  FROM uitvoeringen WHERE locatie = 'UTRECHT' OR  locat
 -- Geef de naam en voorletters van alle medewerkers, behalve van R. Jansen.
 DROP VIEW IF EXISTS s2_4; CREATE OR REPLACE VIEW s2_4 AS                                                     -- [TEST]
 SELECT naam, voorl FROM medewerkers
-WHERE naam != 'JANSEN'
-AND voorl != 'R';
+WHERE NOT (naam = 'JANSEN'
+AND voorl = 'R');
 
 
 -- S2.5. Nieuwe SQL-cursus
