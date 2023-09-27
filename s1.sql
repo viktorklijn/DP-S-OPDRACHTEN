@@ -64,9 +64,7 @@ CREATE SEQUENCE afdeling_nummer_sequence
     INCREMENT BY 10;
 
 ALTER TABLE afdelingen
-ALTER COLUMN anr TYPE INTEGER;
-ALTER TABLE medewerkers
-ALTER COLUMN afd TYPE INTEGER;
+ALTER COLUMN anr TYPE NUMERIC(5);
 
 UPDATE afdelingen SET anr = NEXTVAL('afdeling_nummer_sequence');
 
@@ -95,7 +93,7 @@ CREATE TABLE adressen
     FOREIGN KEY (med_mnr) REFERENCES medewerkers (mnr)
 );
 
-INSERT INTO adressen (postcode, huisnummer, ingangsdatum, einddatum, telefoon, med_mnr) values ('2341NV', '74', 2020-04-09, 2026-04-09, '0622070763', 8000);
+INSERT INTO adressen (postcode, huisnummer, ingangsdatum, einddatum, telefoon, med_mnr) values ('2341NV', '74', '2020-04-09', '2026-04-09', '0622070763', 8000);
 
 -- S1.5. Commissie
 --
