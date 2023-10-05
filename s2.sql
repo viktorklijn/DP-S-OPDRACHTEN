@@ -62,7 +62,7 @@ AND voorl = 'R');
 -- komende 2 maart. De cursus wordt gegeven in Leerdam door Nick Smit.
 -- Voeg deze gegevens toe.
 INSERT INTO uitvoeringen (cursus, begindatum, locatie, docent)
-values ('S02', '02-03-2020', 'LEERDAM', 7369)
+values ('S02', '2020-03-02', 'LEERDAM', 7369)
 ON CONFLICT DO NOTHING;                                                                                         -- [TEST]
 
 
@@ -70,8 +70,8 @@ ON CONFLICT DO NOTHING;                                                         
 --
 -- Neem één van je collega-studenten aan als stagiair ('STAGIAIR') en
 -- voer zijn of haar gegevens in. Kies een personeelnummer boven de 8000.
-INSERT INTO medewerkers (mnr, naam, voorl, functie, chef, gbdatum, maandsal, comm, afd)
-values (8010, 'Visser', 'J', 'STAGIAIR', 7698, '28-10-2004', 1250, 1400, 30)
+INSERT INTO medewerkers (mnr, naam, voorl, functie, chef, gbdatum, maandsal, afd)
+values (8010, 'Visser', 'J', 'STAGIAIR', 7698, '28-10-2004', 1250, 30)
 ON CONFLICT DO NOTHING;                                                                                         -- [TEST]
 
 
