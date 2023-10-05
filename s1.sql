@@ -45,7 +45,7 @@ ALTER TABLE medewerkers ADD geslacht CHAR(1)
 -- nieuwe medewerker A DONK aangenomen. Hij krijgt medewerkersnummer 8000
 -- en valt direct onder de directeur.
 -- Voeg de nieuwe afdeling en de nieuwe medewerker toe aan de database.
-INSERT INTO medewerkers (mnr, naam, voorl, functie, gbdatum, maandsal) values (8000, 'DONK', 'A', 'DIRECTEUR', '1989-09-04', 5000);
+INSERT INTO medewerkers (mnr, naam, voorl, functie, chef, gbdatum, maandsal) values (8000, 'DONK', 'A', 'MANAGER',7839, '1989-09-04', 5000);
 INSERT INTO afdelingen (anr, naam, locatie, hoofd) VALUES (50, 'ONDERZOEK', 'ZWOLLE', 8000);
 
 
@@ -116,23 +116,23 @@ VALUES (8002, 'JANSEN', 'M', 'VERKOPER', 7698, '1981-07-17', 1000, NULL);
 -- Met onderstaande query kun je je code testen. Zie bovenaan dit bestand
 -- voor uitleg.
 
--- SELECT * FROM test_exists('S1.1', 1) AS resultaat
--- UNION
--- SELECT * FROM test_exists('S1.2', 1) AS resultaat
--- UNION
--- SELECT 'S1.3 wordt niet getest: geen test mogelijk.' AS resultaat
--- UNION
--- SELECT * FROM test_exists('S1.4', 6) AS resultaat
--- UNION
--- SELECT 'S1.5 wordt niet getest: handmatige test beschikbaar.' AS resultaat
--- ORDER BY resultaat;
+SELECT * FROM test_exists('S1.1', 1) AS resultaat
+UNION
+SELECT * FROM test_exists('S1.2', 1) AS resultaat
+UNION
+SELECT 'S1.3 wordt niet getest: geen test mogelijk.' AS resultaat
+UNION
+SELECT * FROM test_exists('S1.4', 6) AS resultaat
+UNION
+SELECT 'S1.5 wordt niet getest: handmatige test beschikbaar.' AS resultaat
+ORDER BY resultaat;
 --
 --
 -- -- Draai alle wijzigingen terug om conflicten in komende opdrachten te voorkomen.
--- DROP TABLE IF EXISTS adressen;
--- UPDATE medewerkers SET afd = NULL WHERE mnr < 7369 OR mnr > 7934;
--- UPDATE afdelingen SET hoofd = NULL WHERE anr > 40;
--- DELETE FROM afdelingen WHERE anr > 40;
--- DELETE FROM medewerkers WHERE mnr < 7369 OR mnr > 7934;
--- ALTER TABLE medewerkers DROP CONSTRAINT IF EXISTS m_geslacht_chk;
--- ALTER TABLE medewerkers DROP COLUMN IF EXISTS geslacht;
+DROP TABLE IF EXISTS adressen;
+UPDATE medewerkers SET afd = NULL WHERE mnr < 7369 OR mnr > 7934;
+UPDATE afdelingen SET hoofd = NULL WHERE anr > 40;
+DELETE FROM afdelingen WHERE anr > 40;
+DELETE FROM medewerkers WHERE mnr < 7369 OR mnr > 7934;
+ALTER TABLE medewerkers DROP CONSTRAINT IF EXISTS m_geslacht_chk;
+ALTER TABLE medewerkers DROP COLUMN IF EXISTS geslacht;
