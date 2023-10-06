@@ -85,11 +85,13 @@ ORDER BY begindatum;
 -- S5.7.
 -- Geef voorletter(s) en achternaam van alle trainers die ooit tijdens een
 -- algemene ('ALG') cursus hun eigen chef als cursist hebben gehad.
-
--- SELECT DISTINCT voorl, naam FROM uitvoeringen
--- INNER JOIN medewerkers on uitvoeringen.docent = medewerkers.mnr
--- WHERE functie = 'TRAINER'
--- AND medewerkers.chef IN (SELECT chef FROM medewerkers WHERE chef IS NOT NULL AND chef IN (SELECT cursist FROM inschrijvingen WHERE cursus IN (SELECT code from cursussen WHERE type = 'ALG')));
+DROP VIEW IF EXISTS s5_7; CREATE OR REPLACE VIEW s5_7 AS                                                     -- [TEST]
+SELECT voorl, naam FROM medewerkers
+WHERE mnr IN (SELECT u.docent
+              FROM inschrijvingen AS i, uitvoeringen AS u, medewerkers AS m, cursussen AS c
+              WHERE m.chef = i.cursist AND i.cursus = c.code AND c.type = 'ALG'
+              AND u.begindatum = i.begindatum AND i.cursus = u.cursus AND u.docent = m.mnr
+);
 
 -- S5.8.
 -- Geef de naam van de medewerkers die nog nooit een cursus hebben gegeven.
